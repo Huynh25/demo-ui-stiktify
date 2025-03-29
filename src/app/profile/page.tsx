@@ -4,9 +4,7 @@ import {
   Settings,
   MapPin,
   Link as LinkIcon,
-  Edit,
   Grid,
-  List,
   Bookmark,
   Heart,
 } from "lucide-react";

@@ -6,17 +6,28 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        background: "#121212",
-        surface: "#1a1a1a",
-        primary: {
-          DEFAULT: "#7c3aed",
-          hover: "#6d28d9",
+        // Light mode colors
+        light: {
+          background: "#ffffff",
+          surface: "#f8f9fa",
+          primary: "#7c3aed",
+          secondary: "#f3f4f6",
+          text: "#111827",
+          border: "#e5e7eb",
         },
-        secondary: "#2a2a2a",
-        border: "#2a2a2a",
+        // Dark mode colors
+        dark: {
+          background: "#121212",
+          surface: "#1a1a1a",
+          primary: "#7c3aed",
+          secondary: "#2a2a2a",
+          text: "#ffffff",
+          border: "#2a2a2a",
+        },
       },
     },
   },

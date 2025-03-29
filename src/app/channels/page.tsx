@@ -1,6 +1,6 @@
 import React from "react";
 import MainLayout from "@/components/layout/MainLayout";
-import { Play, Users, Bell, Star, Search } from "lucide-react";
+import { Play, Bell, Star, Search } from "lucide-react";
 
 const channels = [
   {

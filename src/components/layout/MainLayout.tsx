@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Header from "./Header";
 import LeftSidebar from "./LeftSidebar";
@@ -10,7 +12,7 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#121212] text-white">
+    <div className="min-h-screen bg-background dark:bg-background-dark text-text dark:text-text-dark">
       <Header />
       <div className="flex">
         <LeftSidebar />

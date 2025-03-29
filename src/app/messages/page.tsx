@@ -1,48 +1,57 @@
-import React from 'react';
-import MainLayout from '@/components/layout/MainLayout';
-import { Search, Phone, Video, MoreVertical, Send, Image as ImageIcon, Smile, Paperclip } from 'lucide-react';
+import React from "react";
+import MainLayout from "@/components/layout/MainLayout";
+import {
+  Search,
+  Phone,
+  Video,
+  MoreVertical,
+  Send,
+  Image as ImageIcon,
+  Smile,
+  Paperclip,
+} from "lucide-react";
 
 const conversations = [
   {
     id: 1,
-    name: 'Sarah Lee',
-    lastMessage: 'Hey, how are you?',
-    time: '2m ago',
+    name: "Sarah Lee",
+    lastMessage: "Hey, how are you?",
+    time: "2m ago",
     unread: 2,
     online: true,
-    avatar: '/avatars/sarah.jpg',
+    avatar: "/avatars/sarah.jpg",
   },
   {
     id: 2,
-    name: 'John Smith',
-    lastMessage: 'The meeting is at 3 PM',
-    time: '1h ago',
+    name: "John Smith",
+    lastMessage: "The meeting is at 3 PM",
+    time: "1h ago",
     unread: 0,
     online: false,
-    avatar: '/avatars/john.jpg',
+    avatar: "/avatars/john.jpg",
   },
 ];
 
 const messages = [
   {
     id: 1,
-    sender: 'Sarah Lee',
-    content: 'Hey, how are you?',
-    time: '2:30 PM',
+    sender: "Sarah Lee",
+    content: "Hey, how are you?",
+    time: "2:30 PM",
     isSender: false,
   },
   {
     id: 2,
-    sender: 'You',
-    content: 'I'm good! How about you?',
-    time: '2:31 PM',
+    sender: "You",
+    content: "Im good! How about you?",
+    time: "2:31 PM",
     isSender: true,
   },
   {
     id: 3,
-    sender: 'Sarah Lee',
-    content: 'Great! Are you free for a call later?',
-    time: '2:32 PM',
+    sender: "Sarah Lee",
+    content: "Great! Are you free for a call later?",
+    time: "2:32 PM",
     isSender: false,
   },
 ];
@@ -55,7 +64,10 @@ export default function MessagesPage() {
         <div className="w-80 border-r border-gray-800 bg-[#1a1a1a]">
           <div className="p-4">
             <div className="relative mb-4">
-              <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+              <Search
+                className="absolute left-3 top-2.5 text-gray-400"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search messages"
@@ -77,10 +89,16 @@ export default function MessagesPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-baseline">
-                      <h3 className="font-medium truncate">{conversation.name}</h3>
-                      <span className="text-xs text-gray-400">{conversation.time}</span>
+                      <h3 className="font-medium truncate">
+                        {conversation.name}
+                      </h3>
+                      <span className="text-xs text-gray-400">
+                        {conversation.time}
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-400 truncate">{conversation.lastMessage}</p>
+                    <p className="text-sm text-gray-400 truncate">
+                      {conversation.lastMessage}
+                    </p>
                   </div>
                   {conversation.unread > 0 && (
                     <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
@@ -122,15 +140,19 @@ export default function MessagesPage() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.isSender ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${
+                  message.isSender ? "justify-end" : "justify-start"
+                }`}
               >
                 <div
                   className={`max-w-[70%] rounded-lg p-3 ${
-                    message.isSender ? 'bg-purple-600' : 'bg-[#2a2a2a]'
+                    message.isSender ? "bg-purple-600" : "bg-[#2a2a2a]"
                   }`}
                 >
                   <p>{message.content}</p>
-                  <span className="text-xs text-gray-400 mt-1 block">{message.time}</span>
+                  <span className="text-xs text-gray-400 mt-1 block">
+                    {message.time}
+                  </span>
                 </div>
               </div>
             ))}
@@ -162,4 +184,4 @@ export default function MessagesPage() {
       </div>
     </MainLayout>
   );
-} 
+}
