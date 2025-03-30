@@ -1,11 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Search, Bell, MessageSquare, User } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import NotificationPopup from "@/components/NotificationPopup";
 
 const Header = () => {
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const notificationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target as Node)
+      ) {
+        setIsNotificationOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-sm bg-light-surface/80 dark:bg-dark-surface/80 border-b border-light-border dark:border-dark-border">
       <div className="flex items-center justify-between px-4 py-2">
@@ -37,12 +57,24 @@ const Header = () => {
         {/* Right Icons */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <button className="p-2 hover:bg-light-secondary dark:hover:bg-dark-secondary rounded-full relative text-light-text dark:text-dark-text">
-            <Bell size={20} />
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-light-primary dark:bg-dark-primary rounded-full text-xs flex items-center justify-center text-white">
-              3
-            </span>
-          </button>
+
+          {/* Notification Button */}
+          <div className="relative" ref={notificationRef}>
+            <button
+              onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+              className="p-2 hover:bg-light-secondary dark:hover:bg-dark-secondary rounded-full relative text-light-text dark:text-dark-text"
+            >
+              <Bell size={20} />
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-light-primary dark:bg-dark-primary rounded-full text-xs flex items-center justify-center text-white">
+                3
+              </span>
+            </button>
+            <NotificationPopup
+              isOpen={isNotificationOpen}
+              onClose={() => setIsNotificationOpen(false)}
+            />
+          </div>
+
           <Link
             href="/messages"
             className="p-2 hover:bg-light-secondary dark:hover:bg-dark-secondary rounded-full relative text-light-text dark:text-dark-text"

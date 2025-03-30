@@ -1,78 +1,93 @@
+"use client";
+
 import React from "react";
-import { Play } from "lucide-react";
-
-const suggestedVideos = [
-  {
-    title: "Cooking Recipe",
-    author: "Food Channel",
-    thumbnail: "/thumbnails/cooking.jpg",
-  },
-  {
-    title: "Travel Vlog",
-    author: "Travel Channel",
-    thumbnail: "/thumbnails/travel.jpg",
-  },
-  {
-    title: "Tech Review",
-    author: "Tech Channel",
-    thumbnail: "/thumbnails/tech.jpg",
-  },
-];
-
-const suggestedMusic = [
-  {
-    title: "Chill Vibes",
-    artist: "Artist Name",
-    cover: "/covers/chill.jpg",
-  },
-  {
-    title: "Summer",
-    artist: "Artist Name",
-    cover: "/covers/summer.jpg",
-  },
-];
+import Image from "next/image";
 
 const RightSidebar = () => {
+  // Dummy data for suggested users
+  const suggestedUsers = [
+    {
+      id: 1,
+      username: "user1",
+      avatar:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+      followers: "1.2K",
+    },
+    {
+      id: 2,
+      username: "user2",
+      avatar:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+      followers: "856",
+    },
+    {
+      id: 3,
+      username: "user3",
+      avatar:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+      followers: "2.1K",
+    },
+  ];
+
   return (
-    <aside className="w-80 h-[calc(100vh-64px)] bg-[#1a1a1a] border-l border-gray-800 p-4 overflow-y-auto">
-      {/* Suggested Videos */}
-      <div className="mb-8">
-        <h3 className="text-gray-400 text-sm font-medium mb-4">
-          Suggested Videos
+    <div className="w-80 p-4 bg-light-surface dark:bg-dark-surface">
+      {/* Suggested Users */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-4 text-light-text dark:text-dark-text">
+          Suggested Users
         </h3>
         <div className="space-y-4">
-          {suggestedVideos.map((video, index) => (
-            <div key={index} className="flex gap-3">
-              <div className="relative w-24 h-16 bg-gray-800 rounded-lg overflow-hidden">
-                <Play className="absolute inset-0 m-auto" size={20} />
+          {suggestedUsers.map((user) => (
+            <div key={user.id} className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Image
+                  src={user.avatar}
+                  alt={user.username}
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <div>
+                  <p className="font-medium text-light-text dark:text-dark-text">
+                    {user.username}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {user.followers} followers
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-medium text-sm">{video.title}</h4>
-                <p className="text-gray-400 text-xs">{video.author}</p>
-              </div>
+              <button className="px-3 py-1 text-sm font-medium rounded-full bg-light-primary text-white hover:bg-light-primary/90 dark:bg-dark-primary dark:hover:bg-dark-primary/90">
+                Follow
+              </button>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Suggested Music */}
+      {/* Trending Hashtags */}
       <div>
-        <h3 className="text-gray-400 text-sm font-medium mb-4">
-          Trending Music
+        <h3 className="text-lg font-semibold mb-4 text-light-text dark:text-dark-text">
+          Trending Hashtags
         </h3>
-        <div className="space-y-4">
-          {suggestedMusic.map((track, index) => (
-            <div key={index} className="flex gap-3">
-              <div className="w-12 h-12 bg-gray-800 rounded-lg"></div>
-              <div>
-                <h4 className="font-medium text-sm">{track.title}</h4>
-                <p className="text-gray-400 text-xs">{track.artist}</p>
-              </div>
-            </div>
+        <div className="flex flex-wrap gap-2">
+          {[
+            "#stiktify",
+            "#viral",
+            "#trending",
+            "#music",
+            "#dance",
+            "#fashion",
+          ].map((tag) => (
+            <button
+              key={tag}
+              className="px-3 py-1 text-sm rounded-full bg-light-secondary dark:bg-dark-secondary text-light-text dark:text-dark-text hover:bg-light-secondary/80 dark:hover:bg-dark-secondary/80"
+            >
+              {tag}
+            </button>
           ))}
         </div>
       </div>
-    </aside>
+    </div>
   );
 };
 

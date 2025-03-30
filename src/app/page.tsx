@@ -1,87 +1,66 @@
-import React from "react";
-import MainLayout from "@/components/layout/MainLayout";
-import { MessageCircle, Heart, Share2 } from "lucide-react";
+"use client";
 
+import React from "react";
+import Post from "@/components/Post";
+import MainLayout from "@/components/layout/MainLayout";
+
+// Dummy data for testing
 const posts = [
   {
-    id: 1,
-    author: {
-      name: "John Doe",
-      avatar: "/avatars/john.jpg",
-    },
-    content: "Check out this beautiful sunset!",
-    image: "/posts/sunset.jpg",
-    timestamp: "2 hours ago",
-    likes: 120,
-    comments: 45,
+    id: "1",
+    username: "user1",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+    content: "Just posted a new video! Check it out 🎥 #stiktify",
+    mediaUrl:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=800&fit=crop",
+    likes: 1234,
+    comments: 89,
+    shares: 45,
+    isLiked: false,
+    isSaved: false,
+    isFollowing: false,
   },
-  // Add more posts here
+  {
+    id: "2",
+    username: "user2",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    content: "Amazing day at the beach! 🌊 #summer #vibes",
+    mediaUrl:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=800&fit=crop",
+    likes: 5678,
+    comments: 234,
+    shares: 123,
+    isLiked: true,
+    isSaved: false,
+    isFollowing: true,
+  },
+  {
+    id: "3",
+    username: "user3",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+    content: "Living my best life! 🌟 #lifestyle #motivation",
+    mediaUrl:
+      "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=800&fit=crop",
+    likes: 4321,
+    comments: 567,
+    shares: 234,
+    isLiked: false,
+    isSaved: true,
+    isFollowing: false,
+  },
+  // Add more posts as needed
 ];
 
-export default function Home() {
+export default function HomePage() {
   return (
     <MainLayout>
-      <div className="max-w-2xl mx-auto">
-        {/* Create Post */}
-        <div className="bg-[#1a1a1a] rounded-lg p-4 mb-6">
-          <div className="flex gap-4">
-            <div className="w-10 h-10 bg-gray-800 rounded-full"></div>
-            <input
-              type="text"
-              placeholder="What's on your mind?"
-              className="flex-1 bg-[#2a2a2a] rounded-full px-4 focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
-          </div>
-          <div className="flex gap-4 mt-4 border-t border-gray-800 pt-4">
-            <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-[#2a2a2a] rounded-lg">
-              Photo
-            </button>
-            <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-[#2a2a2a] rounded-lg">
-              Video
-            </button>
-            <button className="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-[#2a2a2a] rounded-lg">
-              Music
-            </button>
-          </div>
-        </div>
-
-        {/* Posts */}
-        <div className="space-y-6">
-          {posts.map((post) => (
-            <div
-              key={post.id}
-              className="bg-[#1a1a1a] rounded-lg overflow-hidden"
-            >
-              {/* Post Header */}
-              <div className="p-4 flex items-center gap-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-full"></div>
-                <div>
-                  <h4 className="font-medium">{post.author.name}</h4>
-                  <p className="text-gray-400 text-sm">{post.timestamp}</p>
-                </div>
-              </div>
-
-              {/* Post Content */}
-              <p className="px-4 mb-4">{post.content}</p>
-              <div className="aspect-video bg-gray-800"></div>
-
-              {/* Post Actions */}
-              <div className="p-4 flex items-center gap-6">
-                <button className="flex items-center gap-2 text-gray-400 hover:text-white">
-                  <Heart size={20} />
-                  <span>{post.likes}</span>
-                </button>
-                <button className="flex items-center gap-2 text-gray-400 hover:text-white">
-                  <MessageCircle size={20} />
-                  <span>{post.comments}</span>
-                </button>
-                <button className="flex items-center gap-2 text-gray-400 hover:text-white">
-                  <Share2 size={20} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="max-w-xl mx-auto px-4 py-8">
+        {posts.map((post) => (
+          <Post key={post.id} {...post} />
+        ))}
       </div>
     </MainLayout>
   );
